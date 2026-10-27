@@ -1,0 +1,94 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>APK March | Sistema Futurista</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+ <style>
+ body { background: #000; color: #fff; font-family: 'Orbitron', sans-serif; }
+ .neon-border { border: 1px solid #e11d48; box-shadow: 0 0 15px rgba(225, 29, 72, 0.5); }
+ .gold-glow { color: #d4af37; text-shadow: 0 0 8px #d4af37; }
+ .rojo-glow { color: #e11d48; text-shadow: 0 0 10px #e11d48; }
+ .glass { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); }
+ </style>
+</head>
+<body class="p-4 md:p-10">
+
+ <div class="max-w-xl mx-auto glass neon-border p-8 rounded-3xl">
+ <h1 class="text-4xl font-bold text-center rojo-glow mb-2">APK MARCH</h1>
+ <p class="text-center gold-glow text-sm mb-8">SISTEMA DE DESARROLLO INTEGRADO</p>
+
+ <!-- Asistente de Voz -->
+ <div id="asistente" class="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 mb-8 text-center">
+ <p id="voz-texto" class="text-lg">🤖 <span class="gold-glow">Folax:</span> Escaneando núcleo... ¿Listo para compilar hoy?</p>
+ <div id="indicador" class="w-24 h-1 bg-red-600 mx-auto mt-4 rounded-full animate-pulse"></div>
+ </div>
+
+ <!-- Herramientas -->
+ <div class="grid grid-cols-1 gap-4">
+ <input type="text" id="nombre-app" placeholder="Nombre de tu nueva APK" class="w-full bg-gray-900 p-4 rounded-xl border border-gray-700 text-white focus:border-red-600 outline-none">
+ 
+ <button onclick="compilar()" class="w-full bg-red-600 py-4 rounded-xl font-bold hover:bg-red-700 transition-all transform active:scale-95 border border-red-500 shadow-[0_0_20px_rgba(225,29,72,0.4)]">
+ INICIAR COMPILACIÓN
+ </button>
+
+ <div class="grid grid-cols-2 gap-4">
+ <button onclick="gestorPlantillas()" class="border border-yellow-600 text-yellow-600 p-3 rounded-xl hover:bg-yellow-600 hover:text-black transition-all">32 Plantillas</button>
+ <button onclick="escanear()" class="border border-gray-600 text-gray-400 p-3 rounded-xl hover:bg-gray-700 transition-all">Escanear Errores</button>
+ </div>
+ </div>
+
+ <!-- Consola -->
+ <div id="consola" class="mt-8 p-4 bg-black rounded-lg border border-gray-900 font-mono text-[11px] text-green-500 h-32 overflow-y-auto">
+ > APK_March_v1.0.0 inicializado...
+ </div>
+ </div>
+
+ <script>
+ const consola = document.getElementById('consola');
+ const voz = document.getElementById('voz-texto');
+
+ function log(msg) {
+ consola.innerHTML += `<br>> ${msg}`;
+ consola.scrollTop = consola.scrollHeight;
+ }
+
+ function compilar() {
+ const nombre = document.getElementById('nombre-app').value || "MiProyecto";
+ voz.innerHTML = `🤖 <span class="gold-glow">Folax:</span> Empaquetando ${nombre}...`;
+ log("Iniciando secuencia de compilación...");
+ setTimeout(() => log("Verificando permisos de sistema..."), 1000);
+ setTimeout(() => log("Firmando APK con claves doradas..."), 2000);
+ setTimeout(() => {
+ log("¡APK March completada exitosamente!");
+ alert("La aplicación " + nombre + " ha sido compilada con éxito.");
+ }, 3500);
+ }
+
+ function gestorPlantillas() {
+ log("Accediendo al catálogo de 32 plantillas...");
+ voz.innerText = "Folax: Categorías cargadas: Productividad, Herramientas, Juegos...";
+ }
+
+ function escanear() {
+ log("Analizando dependencias...");
+ setTimeout(() => log("Sistema limpio: 0 vulnerabilidades."), 800);
+ }
+
+ // Bienvenida al cargar
+ window.onload = () => {
+ setTimeout(() => {
+ if ('speechSynthesis' in window) {
+ const msg = new SpeechSynthesisUtterance("Bienvenida a APK March. Soy tu asistente. ¿Qué crearemos hoy?");
+ msg.lang = 'es-ES';
+ window.speechSynthesis.speak(msg);
+ }
+ }, 1000);
+ };
+ </script>
+</body>
+</html>
+```
